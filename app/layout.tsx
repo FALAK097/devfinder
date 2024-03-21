@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
+import Head from 'next/head';
 
 import './globals.css';
 import { Providers } from './provider';
@@ -21,6 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/icon.ico" />
+      </Head>
       <body className={inter.className}>
         <Providers>
           <Header />

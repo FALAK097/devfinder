@@ -1,20 +1,19 @@
 import Link from 'next/link';
 import { GithubIcon } from 'lucide-react';
 
-import { db } from '@/db';
 import { Room } from '@/db/schema';
-
 import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { getRooms } from '@/data-access/rooms';
 import { TagList, splitTags } from '@/components/tags-list';
+import { SearchBar } from './browse/search-bar';
+import { unstable_noStore } from 'next/cache';
 
 function RoomCard({ room }: { room: Room }) {
   return (
@@ -47,8 +46,15 @@ function RoomCard({ room }: { room: Room }) {
   );
 }
 
-export default async function Home() {
-  const rooms = await getRooms();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: {
+    search: string;
+  };
+}) {
+  unstable_noStore();
+  const rooms = await getRooms(searchParams.search);
 
   return (
     <main className="min-h-screen p-16">
@@ -58,6 +64,11 @@ export default async function Home() {
           <Link href="/create-room">Create Room</Link>
         </Button>
       </div>
+
+      <div className="mb-12">
+        <SearchBar />
+      </div>
+
       <div className="grid grid-cols-3 gap-4">
         {rooms.map((room) => {
           return <RoomCard key={room.id} room={room} />;
