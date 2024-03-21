@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { getRooms } from '@/data-access/rooms';
+import { TagList, splitTags } from '@/components/tags-list';
 
 function RoomCard({ room }: { room: Room }) {
   return (
@@ -22,22 +23,26 @@ function RoomCard({ room }: { room: Room }) {
         <CardTitle>{room.name}</CardTitle>
         <CardDescription>{room.description}</CardDescription>
       </CardHeader>
-      <CardContent>
-        {room.githubRepo && (
-          <Link
-            href={room.githubRepo}
-            className="flex items-center gap-2"
-            target="_blank"
-            rel="noopener noreferrer">
-            <GithubIcon /> GitHub Project
-          </Link>
-        )}
+      <CardContent className="flex flex-col gap-4">
+        <TagList tags={splitTags(room.language)} />
+        <div className="flex flex-col">
+          {room.githubRepo && (
+            <div className="flex items-center gap-2 justify-between">
+              <Link
+                href={room.githubRepo}
+                className="flex items-center gap-2"
+                target="_blank"
+                rel="noopener noreferrer">
+                <GithubIcon />
+                GitHub Project
+              </Link>
+              <Button asChild>
+                <Link href={`rooms/${room.id}`}>Join Room</Link>
+              </Button>
+            </div>
+          )}
+        </div>
       </CardContent>
-      <CardFooter>
-        <Button asChild>
-          <Link href={`rooms/${room.id}`}>Join Room</Link>
-        </Button>
-      </CardFooter>
     </Card>
   );
 }

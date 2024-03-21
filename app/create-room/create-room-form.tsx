@@ -54,7 +54,7 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="DevFinder Room 1" />
               </FormControl>
               <FormDescription>This is your public room name.</FormDescription>
               <FormMessage />
@@ -69,10 +69,13 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="A room for developers to code together."
+                />
               </FormControl>
               <FormDescription>
-                Please describe what you'll be coding on.
+                Describe what you'll be coding on & what it's about.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -86,10 +89,13 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>GitHub Repo</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="https://github.com/FALAK097/devfinder"
+                />
               </FormControl>
               <FormDescription>
-                Please put a link to the project you are working on.
+                Put a link to the project you are working on.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -101,12 +107,13 @@ export function CreateRoomForm() {
           name="language"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Primary Programming Language</FormLabel>
+              <FormLabel>Tags</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="typescript, next.js, tailwind" />
               </FormControl>
               <FormDescription>
-                List the primary programming language you are working with.
+                List your languages, frameworks, libraries to help others find
+                your room.
               </FormDescription>
               <FormMessage />
             </FormItem>
