@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { TagList } from '@/components/tags-list';
 import { deleteRoomAction } from './actions';
+import { toast } from '@/components/ui/use-toast';
 
 export function UserRoomCard({ room }: { room: Room }) {
   return (
@@ -76,6 +77,11 @@ export function UserRoomCard({ room }: { room: Room }) {
                   <AlertDialogAction
                     onClick={() => {
                       deleteRoomAction(room.id);
+                      toast({
+                        title: 'Room Deleted!',
+                        description: 'Your room has been deleted successfully.',
+                        variant: 'destructive',
+                      });
                     }}>
                     Yes, delete it.
                   </AlertDialogAction>
