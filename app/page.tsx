@@ -11,9 +11,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { getRooms } from '@/data-access/rooms';
-import { TagList, splitTags } from '@/components/tags-list';
+import { TagList } from '@/components/tags-list';
 import { SearchBar } from './browse/search-bar';
 import { unstable_noStore } from 'next/cache';
+import { splitTags } from '@/lib/utils';
 
 function RoomCard({ room }: { room: Room }) {
   return (
