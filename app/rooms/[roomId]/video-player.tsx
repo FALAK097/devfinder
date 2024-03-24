@@ -17,7 +17,7 @@ import {
 import { generateTokenAction } from './actions';
 import { useRouter } from 'next/navigation';
 
-const apiKey = process.env.NEXT_PUBLIC_GET_STREAM_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_GET_STREAM_API_KEY || '';
 
 export function DevFinderVideo({ room }: { room: Room }) {
   const session = useSession();
@@ -26,32 +26,35 @@ export function DevFinderVideo({ room }: { room: Room }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (!room) return;
-    if (!session.data) {
-      return;
-    }
+    if (!room || !session.data) return;
+
     const userId = session.data.user.id;
-    const client = new StreamVideoClient({
+    const user = {
+      id: userId,
+      name: session.data.user.name || '',
+      image: session.data.user.image || '',
+    };
+
+    const options = {
       apiKey,
-      user: {
-        id: userId,
-        name: session.data.user.name ?? undefined,
-        image: session.data.user.image ?? undefined,
-      },
+      user,
       tokenProvider: () => generateTokenAction(),
-    });
-    const call = client.call('default', room.id);
+    };
+
+    const streamClient = new StreamVideoClient(options);
+    const call = streamClient.call('default', room.id);
     call.join({ create: true });
-    setClient(client);
+
+    setClient(streamClient);
     setCall(call);
 
     return () => {
       call
         .leave()
-        .then(() => client.disconnectUser())
+        .then(() => streamClient.disconnectUser())
         .catch(console.error);
     };
-  }, [session, room]);
+  }, [session, room, apiKey]);
 
   return (
     client &&
