@@ -1,9 +1,32 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function LandingPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="scroll-smooth">
+      {isMobile && (
+        <div className="text-center p-4 bg-indigo-600 rounded-lg mt-8">
+          <p>For the best experience, please use a desktop or laptop.</p>
+        </div>
+      )}
       <div className="relative isolate px-6 pt-6 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

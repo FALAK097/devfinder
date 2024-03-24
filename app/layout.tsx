@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
+
 import { Toaster } from '@/components/ui/toaster';
-import Head from 'next/head';
+import { Header } from './header';
+import { Providers } from './provider';
 
 import './globals.css';
-import { Providers } from './provider';
-import { Header } from './header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,11 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
-      </Head>
+        <meta name="title" content={metadata.title?.toString() || ''} />
+        <meta
+          name="description"
+          content={metadata.description?.toString() || ''}
+        />
+      </head>
       <body className={inter.className}>
         <Providers>
           <Toaster />
