@@ -30,8 +30,8 @@ export default function LandingPage() {
               Find other awesome devs to pair with online
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-200">
-              This platform is for sharing your screen and working with other
-              random developers online so that you can work together
+              Collaborative Coding: Share Your Screen, Work with Developers
+              Worldwide
             </p>
             <div className="mt-6 flex items-center justify-center gap-x-6">
               <Link
