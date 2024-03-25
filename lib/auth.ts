@@ -3,6 +3,7 @@ import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { AuthOptions, DefaultSession, getServerSession } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
+import GitHubProvider from 'next-auth/providers/github';
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
@@ -21,6 +22,10 @@ export const authConfig = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   callbacks: {

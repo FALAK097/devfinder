@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { DevFinderVideo } from './video-player';
 import { splitTags } from '@/lib/utils';
 import { unstable_noStore } from 'next/cache';
+import { DevFinderChat } from './chat-section';
 
 export default async function RoomPage(props: { params: { roomId: string } }) {
   unstable_noStore();
@@ -20,7 +21,7 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
   }
 
   return (
-    <div className="grid grid-cols-4 min-h-screen">
+    <div className="grid grid-cols-4">
       <div className="col-span-3 p-4 pr-2">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4">
           <DevFinderVideo room={room} />
@@ -42,6 +43,10 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
           <p className="text-base text-gray-600">{room?.description} </p>
 
           <TagList tags={splitTags(room.language)} />
+
+          {/* <div className="mt-6">
+            <DevFinderChat room={room} />
+          </div> */}
         </div>
       </div>
     </div>

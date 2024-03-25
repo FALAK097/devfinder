@@ -64,6 +64,7 @@ export function DevFinderVideo({ room }: { room: Room }) {
           <StreamCall call={call}>
             <SpeakerLayout />
             <CallControls onLeave={() => router.push('/browse')} />
+            {/* // TODO: onClose cloe the participants list */}
             <CallParticipantsList onClose={() => undefined} />
           </StreamCall>
         </StreamTheme>
