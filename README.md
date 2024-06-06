@@ -1,6 +1,5 @@
 # Dev Finder Application
 
-[DevFinder Demo](https://devfinder-production.up.railway.app/)
 [Recording](https://drive.google.com/file/d/1LHWTFmuTLURbjVj3vrDF-UbVRaq-PxO8/view?usp=sharing)
 
 The Dev Finder application helps developers connect with each other based on their interests, skills, and projects. It provides a platform for developers to collaborate, share knowledge, and find potential team members or mentors.
